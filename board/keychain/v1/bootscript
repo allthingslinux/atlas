@@ -11,8 +11,8 @@ ubi0: attached mtd2 (name "mtd=1", size 7 MiB)
 ubi0: PEB size: 65536 bytes (64 KiB), LEB size: 65408 bytes
 ubi0: min./max. I/O unit sizes: 1/256, sub-page size 1
 ubi0: VID header offset: 64 (aligned 64), data offset: 128
-ubi0: good PEBs: 120, bad PEBs: 0, corrupted PEBs: 0
-ubi0: user volume: 0, internal volumes: 1, max. volumes count: 128
+ubi0: good PEBs: 248, bad PEBs: 0, corrupted PEBs: 0
+ubi0: user volume: 0, internal volumes: 1, max. volumes count: 256
 ubi0: max/mean erase counter: 1/0, WL threshold: 4096, image sequence number: 0
-ubi0: available PEBs: 114, total reserved PEBs: 6, PEBs reserved for bad PEB handling: 0
+ubi0: available PEBs: 242, total reserved PEBs: 6, PEBs reserved for bad PEB handling: 0
 
