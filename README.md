@@ -3,7 +3,7 @@ this is the operating system that runs on the tux keychain
 a lot of things were taken from the business card linux project, big credit there https://github.com/thirtythreeforty/businesscard-linux
 
 ## todo
-- [ ] add stuff to package/tux-flashdrive
+- [ ] readd flashdrive support
 - [ ] clean up readme
 
 ## Building
@@ -18,7 +18,7 @@ make -j$(nproc --ignore=1) # leaves one core free for the host system, less lagg
 ```
 
 ```
-output/host/bin/sunxi-fel -p spiflash-write 0 output/images/flash.bin # write the image to the flash drive
+./output/host/bin/sunxi-fel -p spiflash-write 0 output/images/flash.bin # write the image to the flash drive
 ```
 
 ## info about fel

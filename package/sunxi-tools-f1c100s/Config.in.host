@@ -1,6 +1,5 @@
 config BR2_PACKAGE_HOST_SUNXI_TOOLS_F1C100S
 	bool "host sunxi-tools for F1C100s"
-	depends on BR2_arm
 	help
 	  Tools for Allwinner A10 (aka sun4i) and A13 (aka sun5i)
 	  based devices. This includes fex2bin which can be used to
@@ -10,3 +9,19 @@ config BR2_PACKAGE_HOST_SUNXI_TOOLS_F1C100S
 	  mainline Linux kernel version.
 
 	  http://linux-sunxi.org/Sunxi-tools
+
+if BR2_PACKAGE_HOST_SUNXI_TOOLS_F1C100S
+
+config BR2_PACKAGE_HOST_SUNXI_TOOLS_F1C100S_FEL
+	bool "host sunxi-fel"
+	depends on BR2_TOOLCHAIN_HAS_THREADS # libusb
+	select BR2_PACKAGE_HOST_LIBUSB
+	select BR2_PACKAGE_HOST_ZLIB
+	help
+	  Enable sunxi-fel for the host. This tool is used to communicate
+	  with the device in FEL mode, allowing to write images to flash.
+
+comment "host sunxi-fel needs a toolchain w/ threads"
+	depends on !BR2_TOOLCHAIN_HAS_THREADS
+
+endif
