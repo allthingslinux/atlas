@@ -1,0 +1,6 @@
+source "$BR2_EXTERNAL_KEYCHAIN_PATH/package/sunxi-tools-f1c100s/Config.in.host"
+source "$BR2_EXTERNAL_KEYCHAIN_PATH/package/sunxi-tools-f1c100s/Config.in"
+source "$BR2_EXTERNAL_KEYCHAIN_PATH/package/2048/Config.in"
+source "$BR2_EXTERNAL_KEYCHAIN_PATH/package/robotfindskitten/Config.in"
+
+source "$BR2_EXTERNAL_KEYCHAIN_PATH/package/librecode/Config.in"
