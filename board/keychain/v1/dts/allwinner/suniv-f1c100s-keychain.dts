@@ -62,13 +62,13 @@
 
             partition@0 {
                 label = "u-boot";
-                reg = <0x000000 0x40000>;
+                reg = <0x000000 0x60000>;
                 //read-only;
             };
 
             partition@110000 {
                 label = "rootubi";
-                reg = <0x40000 0x7C0000>;
+                reg = <0x60000 0x7A0000>;
                 //read-only;
             };
         };
