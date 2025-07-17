@@ -62,13 +62,13 @@
 
             partition@0 {
                 label = "u-boot";
-                reg = <0x000000 0x60000>;
+                reg = <0x000000 0x70000>;
                 //read-only;
             };
 
-            partition@110000 {
+            partition@70000 {
                 label = "rootubi";
-                reg = <0x60000 0x7A0000>;
+                reg = <0x70000 0x790000>;
                 //read-only;
             };
         };
@@ -98,6 +98,6 @@
 };
 
 &usbphy {
-	usb0_id_det-gpio = <&pio 4 2 GPIO_ACTIVE_HIGH>; /* PE2 */
+	usb0_id_det-gpios = <&pio 4 2 GPIO_ACTIVE_HIGH>; /* PE2 */
 	status = "okay";
 };
