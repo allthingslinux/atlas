@@ -4,13 +4,60 @@ CONFIG_DEFAULT_DEVICE_TREE="suniv-f1c100s-keychain"
 # CONFIG_OF_UPSTREAM is not set
 CONFIG_SPL=y
 CONFIG_MACH_SUNIV=y
-CONFIG_DRAM_CLK=156
+CONFIG_DRAM_CLK=132
 CONFIG_DRAM_ZQ=0
 # CONFIG_VIDEO_SUNXI is not set
 CONFIG_SPL_SPI_SUNXI=y
-CONFIG_MTD=y
+
+# SPI NOR flash support (required for SPI flash boot)
+CONFIG_SF_DEFAULT_BUS=0
+CONFIG_SF_DEFAULT_CS=0
+CONFIG_SF_DEFAULT_MODE=0
+CONFIG_SF_DEFAULT_SPEED=24000000
+CONFIG_SPI_FLASH=y
+CONFIG_DM_SPI_FLASH=y
 CONFIG_SPI_FLASH_WINBOND=y
 CONFIG_SPI_FLASH_XTX=y
+CONFIG_SPI_FLASH_MTD=y
+CONFIG_CMD_SF=y
+
+# MTD and UBI/UBIFS support (required for UBI partitions)
+CONFIG_MTD=y
+CONFIG_DM_MTD=y
+CONFIG_MTD_SPI_NOR=y
+CONFIG_MTD_PARTITIONS=y
+CONFIG_MTD_DEVICE=y
+CONFIG_CMD_MTDPARTS=y
+CONFIG_CMD_UBI=y
+CONFIG_CMD_UBIFS=y
+CONFIG_MTD_UBI=y
+CONFIG_UBIFS_FS=y
+CONFIG_MTD_UBI_FASTMAP=y
+CONFIG_MTD_UBI_BEB_LIMIT=20
+CONFIG_MTD_UBI_WL_THRESHOLD=4096
+
+# Environment in SPI flash (stores U-Boot env variables)
+CONFIG_ENV_IS_IN_SPI_FLASH=y
+CONFIG_ENV_SPI_BUS=0
+CONFIG_ENV_SPI_CS=0
+CONFIG_ENV_SPI_MAX_HZ=50000000
+CONFIG_ENV_SPI_MODE=0
+CONFIG_ENV_SIZE=0x2000
+CONFIG_ENV_OFFSET=0x80000
+
+# MTD partition table definition (updated for raw partitions)
+CONFIG_MTDIDS_DEFAULT="nor0=spi0.0"
+CONFIG_MTDPARTS_DEFAULT="mtdparts=spi0.0:1M(uboot),4M(kernel),64k(dtb),-(rootfs)"
+
+# Custom boot command for SPI flash raw partitions (overrides distro_bootcmd)
+CONFIG_USE_BOOTCOMMAND=y
+CONFIG_BOOTCOMMAND="sf probe 0:0 50000000; mtdparts default; echo Loading kernel from 0x100000...; sf read 0x80800000 0x100000 0x400000; echo Loading dtb from 0x500000...; sf read 0x80700000 0x500000 0x10000; echo Kernel loaded, checking header...; md.b 0x80800000 0x40; echo DTB loaded, checking header...; md.b 0x80700000 0x40; echo Setting bootargs...; setenv bootargs 'console=ttyS0,115200 earlyprintk debug loglevel=8 root=/dev/mtdblock3 ro rootfstype=squashfs'; echo Booting with verbose output...; bootz 0x80800000 - 0x80700000"
+
 CONFIG_SPI=y
+CONFIG_DM_SPI=y
 CONFIG_CONS_INDEX=1
 CONFIG_BAUDRATE=115200
+
+# Immediate boot - no delay in development
+CONFIG_BOOTDELAY=0
+CONFIG_BOOT_DELAY=0

@@ -54,7 +54,11 @@
         #size-cells = <1>;
         compatible = "winbond,w25q128", "jedec,spi-nor";
         reg = <0>;
-        spi-max-frequency = <50000000>;
+        spi-max-frequency = <6000000>;
+        spi-tx-bus-width = <1>;
+        spi-rx-bus-width = <1>;
+        m25p,fast-read;
+        status = "okay";
         partitions {
             compatible = "fixed-partitions";
             #address-cells = <1>;
@@ -62,28 +66,37 @@
 
             partition@0 {
                 label = "u-boot";
-                reg = <0x000000 0x70000>;
+                reg = <0x000000 0x100000>;
                 //read-only;
             };
 
-            partition@70000 {
-                label = "rootubi";
-                reg = <0x70000 0x790000>;
+            partition@100000 {
+                label = "kernel";
+                reg = <0x100000 0x400000>;
+                //read-only;
+            };
+
+            partition@500000 {
+                label = "dtb";
+                reg = <0x500000 0x10000>;
+                //read-only;
+            };
+
+            partition@510000 {
+                label = "rootfs";
+                reg = <0x510000 0xAF0000>;
                 //read-only;
             };
         };
     };
 };
 
-&mmc0 {
-	vmmc-supply = <&reg_vcc3v3>;
-	bus-width = <4>;
-	broken-cd;
+&otg_sram {
 	status = "okay";
 };
 
-&otg_sram {
-	status = "okay";
+&mmc0 {
+	status = "disabled";
 };
 
 &uart0 {

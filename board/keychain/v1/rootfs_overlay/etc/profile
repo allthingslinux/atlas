@@ -1,0 +1,7 @@
+# /etc/profile - System-wide environment and startup script for ATLAS keychain
+
+# Set PATH
+export PATH="/bin:/sbin:/usr/bin:/usr/sbin"
+
+# Set default permissions
+umask 022
