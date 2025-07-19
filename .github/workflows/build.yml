@@ -1,0 +1,36 @@
+name: Image Build/Upload
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and Upload Flash Image
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache downloads
+        uses: actions/cache@v4
+        with:
+          path: dl/
+          key: dl
+
+      - name: Update submodules
+        run: git submodule update --init
+
+      - name: Compile
+        run: |
+          cd buildroot
+          make BR2_EXTERNAL=$PWD/../ keychain_defconfig
+          make -j$(nproc)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: spiflash.bin
+          path: buildroot/output/images/spiflash.bin
