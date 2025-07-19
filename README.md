@@ -8,6 +8,7 @@ This is the operating system that runs on the tux keychain.
 - [ ] fix micropython REPL crash on syntax errors
 - [ ] add more packages
 - [ ] get https://linux-sunxi.org/USB_Gadget/Ethernet working
+- [ ] get heartbeat LED working
 
 ## Building
 ```
