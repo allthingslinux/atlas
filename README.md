@@ -8,6 +8,7 @@ a lot of things were taken from the business card linux project, big credit ther
 - [ ] add persistent directory in /root/
 - [ ] fix micropython REPL crash on syntax errors
 - [ ] add more packages
+- [ ] get https://linux-sunxi.org/USB_Gadget/Ethernet working
 
 ## Building
 ```
